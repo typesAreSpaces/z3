@@ -358,9 +358,6 @@ app::app(func_decl * decl, unsigned num_args, expr * const * args):
     expr(AST_APP),
     m_decl(decl),
     m_num_args(num_args) {
-    
-    // std::cout << "From app" << std::endl;
-    // std::cout << m_decl->get_name() << std::endl;
 
     if(m_decl->get_name().is_common())
         m_is_common = true;

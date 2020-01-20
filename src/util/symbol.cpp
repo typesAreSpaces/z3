@@ -153,8 +153,11 @@ bool symbol::contains(char ch) const {
 
 bool symbol::is_common() const {
     std::string name = str();
-    // std::cout << "From symbol::is_common " << name << std::endl;
-    if((name.length() > 7 && name[0] == 'c' && name[1] == 'o' && name[2] == 'm' && name[3] == 'm' && name[4] == 'o' && name[5] == 'n' && name[6] == '_')){
+    auto name_length = name.length();
+    if((name_length > 2 && name.substr(0, 2) == "c_")
+    || (name_length == 3  && name == "Int")
+    || (name_length == 2 && (name == "<=" || name == ">="))
+    || (name_length == 1 && (name[0] == '+' || name[0] == '-' || name[0] == '*' || name[0] == '=' || name[0] == '<' || name[0] == '>'))){
         return true;
     }
     return false;
