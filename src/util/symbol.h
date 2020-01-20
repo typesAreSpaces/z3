@@ -95,6 +95,7 @@ public:
         else return static_cast<unsigned>(reinterpret_cast<size_t const *>(m_data)[-1]);
     }
     bool contains(char c) const;
+    bool is_common() const;
     unsigned display_size() const;
     char const * bare_str() const { SASSERT(!is_numerical()); return m_data; }
     friend std::ostream & operator<<(std::ostream & target, symbol s) {

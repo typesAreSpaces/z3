@@ -150,6 +150,15 @@ bool symbol::contains(char ch) const {
         return false;
     }
 }
+
+bool symbol::is_common() const {
+    std::string name = str();
+    // std::cout << "From symbol::is_common " << name << std::endl;
+    if((name.length() > 7 && name[0] == 'c' && name[1] == 'o' && name[2] == 'm' && name[3] == 'm' && name[4] == 'o' && name[5] == 'n' && name[6] == '_')){
+        return true;
+    }
+    return false;
+}
  
 unsigned symbol::display_size() const {
     SASSERT(!is_marked());

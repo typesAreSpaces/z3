@@ -669,9 +669,13 @@ public:
 class expr : public ast {
 protected:
     friend class ast_manager;
+    bool         m_is_common;
 
-    expr(ast_kind k):ast(k) {}
+    expr(ast_kind k):ast(k), m_is_common(false) {}
 public:
+    bool get_is_common(){
+        return m_is_common;
+    }
 };
 
 // -----------------------------------

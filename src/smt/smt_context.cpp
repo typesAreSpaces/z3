@@ -518,6 +518,12 @@ namespace smt {
             enode * r1 = n1->get_root();
             enode * r2 = n2->get_root();
 
+            // std::cout << enode_pp(n1, *this) << std::endl;
+            // std::cout << n1->m_is_common << std::endl;
+
+            // std::cout << enode_pp(n2, *this) << std::endl;
+            // std::cout << n2->m_is_common << std::endl;
+
             if (r1 == r2) {
                 TRACE("add_eq", tout << "redundant constraint.\n";);
                 return;

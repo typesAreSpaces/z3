@@ -87,6 +87,7 @@ namespace smt {
         unsigned            m_merge_tf:1;       //!< True if the enode should be merged with true/false when the associated boolean variable is assigned.
         unsigned            m_cgc_enabled:1;    //!< True if congruence closure is enabled for this enode.
         unsigned            m_iscope_lvl;       //!< When the enode was internalized
+        bool                m_is_common;
         /*
           The following property is valid for m_parents
           

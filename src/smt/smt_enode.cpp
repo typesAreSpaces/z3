@@ -58,6 +58,7 @@ namespace smt {
         }
         TRACE("mk_enode_detail", tout << "new enode suppress_args: " << n->m_suppress_args << "\n";);
         SASSERT(n->m_suppress_args == suppress_args);
+        n->m_is_common        = owner->get_is_common(); 
         return n;
     }
 
