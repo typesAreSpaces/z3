@@ -2948,7 +2948,41 @@ void mk_model_example() {
 /*@}*/
 /*@}*/
 
+/**
+   \brief Find a model for <tt>x xor y</tt>.
+*/
+void is_common_example()
+{
+    Z3_context ctx;
+    Z3_ast x, y;
+    Z3_symbol U_name, f_name, g_name, x_name, y_name;
+    Z3_func_decl f, g;
+    Z3_sort U;
+    Z3_sort f_domain[2], g_domain[1];
+    Z3_ast fxy, gx;
+    
+    ctx     = mk_context();
+    U_name = Z3_mk_string_symbol(ctx, "U");
+    U = Z3_mk_uninterpreted_sort(ctx, U_name);
+    x_name = Z3_mk_string_symbol(ctx, "c_x");
+    y_name = Z3_mk_string_symbol(ctx, "c_y");
+    x       = Z3_mk_const(ctx, x_name, U);
+    y       = Z3_mk_const(ctx, y_name, U);
+    f_name  = Z3_mk_string_symbol(ctx, "c_f");
+    g_name  = Z3_mk_string_symbol(ctx, "g");
+    f_domain[0] = U;
+    f_domain[1] = U;
+    g_domain[0] = U;
+    f = Z3_mk_func_decl(ctx, f_name, 2, f_domain, U);
+    g = Z3_mk_func_decl(ctx, g_name, 1, g_domain, U);
+    fxy = mk_binary_app(ctx, f, x, y);
+    gx = mk_unary_app(ctx, g, x);
 
+    printf("f(x, y) is common? %d\n", Z3_is_common(ctx, fxy));
+    printf("g(x) is common? %d\n", Z3_is_common(ctx, gx));
+
+    Z3_del_context(ctx);
+}
 
 int main() {
 #ifdef LOG_Z3_CALLS
@@ -2991,5 +3025,6 @@ int main() {
     substitute_vars_example();
     fpa_example();
     mk_model_example();
+    is_common_example();
     return 0;
 }

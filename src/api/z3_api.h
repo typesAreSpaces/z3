@@ -4081,6 +4081,15 @@ extern "C" {
 
     /** @name Accessors */
     /*@{*/
+
+    /**
+       \brief Return a boolean value indicating if the Z3_ast is common.
+
+       def_API('Z3_is_common', BOOL, (_in(CONTEXT), _in(AST)))
+    */
+    bool Z3_API Z3_is_common(Z3_context c, Z3_ast a);
+   
+
     /**
        \brief Return \c Z3_INT_SYMBOL if the symbol was constructed
        using #Z3_mk_int_symbol, and \c Z3_STRING_SYMBOL if the symbol

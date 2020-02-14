@@ -317,6 +317,11 @@ extern "C" {
         Z3_CATCH_RETURN(false);
     }
 
+    bool Z3_API Z3_is_common(Z3_context c, Z3_ast a) {
+        expr * e = to_expr(a);
+        return e->get_is_common();
+    }
+
     Z3_symbol_kind Z3_API Z3_get_symbol_kind(Z3_context c, Z3_symbol s) {
         Z3_TRY;
         LOG_Z3_get_symbol_kind(c, s);
