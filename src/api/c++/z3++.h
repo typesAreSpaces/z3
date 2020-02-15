@@ -787,6 +787,11 @@ namespace z3 {
         bool is_well_sorted() const { bool r = Z3_is_well_sorted(ctx(), m_ast); check_error(); return r; }
 
         /**
+           \brief Return true if this is a Common expression.
+        */
+        bool is_common() const { bool r = Z3_is_common(ctx(), m_ast); check_error(); return r; }
+
+        /**
            \brief Return string representation of numeral or algebraic number
            This method assumes the expression is numeral or algebraic
 

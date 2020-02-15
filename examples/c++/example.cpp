@@ -1284,6 +1284,14 @@ static void string_issue_2298() {
     s.pop();
 }
 
+static void is_common_example(){
+  context c;
+  expr x = c.int_const("c_x");
+  expr y = c.int_const("y");
+  std::cout << x.is_common() << std::endl;
+  std::cout << y.is_common() << std::endl;
+}
+
 int main() {
 
     try {
@@ -1337,6 +1345,7 @@ int main() {
         recfun_example(); std::cout << "\n";
         string_values(); std::cout << "\n";
         string_issue_2298(); std::cout << "\n";
+	is_common_example(); std::cout << "\n";
         std::cout << "done\n";
     }
     catch (exception & ex) {

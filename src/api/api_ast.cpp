@@ -318,6 +318,7 @@ extern "C" {
     }
 
     bool Z3_API Z3_is_common(Z3_context c, Z3_ast a) {
+        RESET_ERROR_CODE();
         expr * e = to_expr(a);
         return e->get_is_common();
     }
