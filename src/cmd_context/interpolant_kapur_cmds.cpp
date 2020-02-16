@@ -29,6 +29,8 @@
 #include "ast/expr2var.h"
 #include "ast/pp.h"
 #include "ast/scoped_proof.h"
+#include "api/c++/z3++.h"
+#include "api/api_util.h"
 
 // static void show_interpolant_and_maybe_check(cmd_context & ctx,
 //                                              ptr_vector<ast> &cnsts,
@@ -236,8 +238,11 @@ public:
 
 
     void execute(cmd_context & ctx) override {
-        // get_interpolant(ctx,m_targets,m_params);
-        std::cout << "Hohoho" << std::endl;
+        z3::context z3_ctx;
+        std::cout << z3::expr(z3_ctx, of_expr(m_targets[0])) << std::endl;
+        std::cout << z3::expr(z3_ctx, of_expr(m_targets[1])) << std::endl;
+        // TODO: Include the master thesis inside the src directory
+        // as interp
     }
 };
 
@@ -275,8 +280,10 @@ public:
     }
     
     void execute(cmd_context & ctx) override {
-        // get_interpolant(ctx,m_targets,m_params);
         std::cout << "Huhuhu" << std::endl;
+        // TODO: Implement this properly.
+        // Hint: Take a look to the execute 
+        // method in compute_intepolant_cmd
     }
 };
 

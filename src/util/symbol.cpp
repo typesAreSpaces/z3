@@ -155,8 +155,8 @@ bool symbol::is_common() const {
     std::string name = str();
     auto name_length = name.length();
     if((name_length > 2 && name.substr(0, 2) == "c_")
-    || (name_length == 3  && name == "Int")
-    || (name_length == 2 && (name == "<=" || name == ">="))
+    || (name_length == 3  && (name == "Int" || name == "and" || name == "not"))
+    || (name_length == 2 && (name == "<=" || name == ">=" || name == "=>"|| name == "or"))
     || (name_length == 1 && (name[0] == '+' || name[0] == '-' || name[0] == '*' || name[0] == '=' || name[0] == '<' || name[0] == '>'))){
         return true;
     }
