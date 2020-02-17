@@ -323,6 +323,18 @@ extern "C" {
         return e->get_is_common();
     }
 
+    bool Z3_API Z3_is_a_pure(Z3_context c, Z3_ast a) {
+        RESET_ERROR_CODE();
+        expr * e = to_expr(a);
+        return e->get_is_a_pure();
+    }
+
+    bool Z3_API Z3_is_b_pure(Z3_context c, Z3_ast a) {
+        RESET_ERROR_CODE();
+        expr * e = to_expr(a);
+        return e->get_is_b_pure();
+    }
+
     Z3_symbol_kind Z3_API Z3_get_symbol_kind(Z3_context c, Z3_symbol s) {
         Z3_TRY;
         LOG_Z3_get_symbol_kind(c, s);

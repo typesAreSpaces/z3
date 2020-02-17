@@ -358,14 +358,19 @@ app::app(func_decl * decl, unsigned num_args, expr * const * args):
     expr(AST_APP),
     m_decl(decl),
     m_num_args(num_args) {
-
-    if(m_decl->get_name().is_common())
-        m_is_common = true;
+    
+    const symbol & current_symbol = m_decl->get_name();
+    m_is_common = current_symbol.is_common();
+    m_is_a_pure = current_symbol.is_a_pure();
+    m_is_b_pure = current_symbol.is_b_pure();
     
     for (unsigned i = 0; i < num_args; i++){
         m_args[i] = args[i];
         m_is_common = m_is_common && args[i]->get_is_common();
+        m_is_a_pure = m_is_a_pure && args[i]->get_is_a_pure();
+        m_is_b_pure = m_is_b_pure && args[i]->get_is_b_pure();
     }
+
 }
 
 // -----------------------------------

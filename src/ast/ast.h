@@ -670,11 +670,19 @@ class expr : public ast {
 protected:
     friend class ast_manager;
     bool         m_is_common;
+    bool         m_is_a_pure;
+    bool         m_is_b_pure;
 
-    expr(ast_kind k):ast(k), m_is_common(false) {}
+    expr(ast_kind k):ast(k), m_is_common(false), m_is_a_pure(false), m_is_b_pure(false) {}
 public:
     bool get_is_common(){
         return m_is_common;
+    }
+    bool get_is_a_pure(){
+        return m_is_a_pure;
+    }
+    bool get_is_b_pure(){
+        return m_is_b_pure;
     }
 };
 

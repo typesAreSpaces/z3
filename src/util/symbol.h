@@ -96,6 +96,8 @@ public:
     }
     bool contains(char c) const;
     bool is_common() const;
+    bool is_a_pure() const;
+    bool is_b_pure() const; 
     unsigned display_size() const;
     char const * bare_str() const { SASSERT(!is_numerical()); return m_data; }
     friend std::ostream & operator<<(std::ostream & target, symbol s) {

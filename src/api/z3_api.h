@@ -4088,6 +4088,20 @@ extern "C" {
        def_API('Z3_is_common', BOOL, (_in(CONTEXT), _in(AST)))
     */
     bool Z3_API Z3_is_common(Z3_context c, Z3_ast a);
+
+    /**
+       \brief Return a boolean value indicating if the Z3_ast is a-pure.
+
+       def_API('Z3_is_a_pure', BOOL, (_in(CONTEXT), _in(AST)))
+    */
+    bool Z3_API Z3_is_a_pure(Z3_context c, Z3_ast a);
+
+    /**
+       \brief Return a boolean value indicating if the Z3_ast is b-pure.
+
+       def_API('Z3_is_b_pure', BOOL, (_in(CONTEXT), _in(AST)))
+    */
+    bool Z3_API Z3_is_b_pure(Z3_context c, Z3_ast a);
    
 
     /**

@@ -162,6 +162,24 @@ bool symbol::is_common() const {
     }
     return false;
 }
+
+bool symbol::is_a_pure() const {
+    std::string name = str();
+    auto name_length = name.length();
+    if(name_length > 2 && name.substr(0, 2) == "b_"){
+        return false;
+    }
+    return true;
+}
+
+bool symbol::is_b_pure() const {
+    std::string name = str();
+    auto name_length = name.length();
+    if(name_length > 2 && name.substr(0, 2) == "a_"){
+        return false;
+    }
+    return true;
+}
  
 unsigned symbol::display_size() const {
     SASSERT(!is_marked());
