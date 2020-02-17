@@ -71,6 +71,8 @@ namespace z3 {
     typedef ast_vector_tpl<expr>      expr_vector;
     typedef ast_vector_tpl<sort>      sort_vector;
     typedef ast_vector_tpl<func_decl> func_decl_vector;
+    template<typename T1, typename T2> class ast_map_tpl;
+    typedef ast_map_tpl<expr, expr>   expr_map;
 
     inline void set_param(char const * param, char const * value) { Z3_global_param_set(param, value); }
     inline void set_param(char const * param, bool value) { Z3_global_param_set(param, value ? "true" : "false"); }
@@ -1945,6 +1947,25 @@ namespace z3 {
         friend std::ostream & operator<<(std::ostream & out, ast_vector_tpl const & v) { out << Z3_ast_vector_to_string(v.ctx(), v); return out; }
     };
 
+    template<typename T1, typename T2>
+    class ast_map_tpl : public object {
+        Z3_ast_map m_map;
+        void init(Z3_ast_map map_) { Z3_ast_map_inc_ref(ctx(), map_); m_map = map_; }
+    public:
+        ast_map_tpl(context & c):object(c) { init(Z3_mk_ast_map(c)); }
+        ast_map_tpl(context & c, Z3_ast_map v):object(c) { init(v); }
+        ast_map_tpl(ast_map_tpl const & s):object(s), m_map(s.m_map) { Z3_ast_map_inc_ref(ctx(), m_map); }
+
+        ~ast_map_tpl() { Z3_ast_map_dec_ref(ctx(), m_map); }
+        operator Z3_ast_map() const { return m_map; }
+        unsigned size() const { return Z3_ast_map_size(ctx(), m_map); }
+        bool contains(T1 const & key) { bool r = Z3_ast_map_contains(ctx(), m_map, key); check_error(); return r; }
+        T2 find(T1 const & key) { Z3_ast r = Z3_ast_map_find(ctx(), m_map, key); check_error(); return cast_ast<T2>()(ctx(), r); }
+        void insert(T1 const & key, T2 const & value) { Z3_ast_map_insert(ctx(), m_map, key, value); check_error(); }
+        void reset() { Z3_ast_map_reset(ctx(), m_map); check_error(); }
+        void erase(T1 const & key) { Z3_ast_map_erase(ctx(), m_map, key); check_error(); }
+        friend std::ostream & operator<<(std::ostream & out, ast_map_tpl const & map_) { out << Z3_ast_map_to_string(map_.ctx(), map_); return out; }
+    };
 
     template<typename T>
     template<typename T2>
