@@ -2410,6 +2410,14 @@ namespace z3 {
             return to_check_result(r);
         }
         model get_model() const { Z3_model m = Z3_solver_get_model(ctx(), m_solver); check_error(); return model(ctx(), m); }
+        check_result implied_equalities(unsigned num_terms, expr_vector & terms, unsigned class_ids[]){
+            Z3_ast terms_[num_terms];
+            for(unsigned i = 0; i < num_terms; i++)
+                terms_[i] = terms[i];
+            Z3_lbool r = Z3_get_implied_equalities(ctx(), m_solver, num_terms, terms_, class_ids);
+            check_error();
+            return to_check_result(r);
+        }
         check_result consequences(expr_vector& assumptions, expr_vector& vars, expr_vector& conseq) {
             Z3_lbool r = Z3_solver_get_consequences(ctx(), m_solver, assumptions, vars, conseq);
             check_error();
