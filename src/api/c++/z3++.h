@@ -2410,7 +2410,7 @@ namespace z3 {
             return to_check_result(r);
         }
         model get_model() const { Z3_model m = Z3_solver_get_model(ctx(), m_solver); check_error(); return model(ctx(), m); }
-        check_result implied_equalities(unsigned num_terms, expr_vector & terms, unsigned class_ids[]){
+        check_result check_implied_equalities(unsigned num_terms, expr_vector & terms, unsigned class_ids[]){
             Z3_ast terms_[num_terms];
             for(unsigned i = 0; i < num_terms; i++)
                 terms_[i] = terms[i];
