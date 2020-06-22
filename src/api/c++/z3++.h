@@ -1964,6 +1964,7 @@ namespace z3 {
         void insert(T1 const & key, T2 const & value) { Z3_ast_map_insert(ctx(), m_map, key, value); check_error(); }
         void reset() { Z3_ast_map_reset(ctx(), m_map); check_error(); }
         void erase(T1 const & key) { Z3_ast_map_erase(ctx(), m_map, key); check_error(); }
+        ast_vector_tpl<T1> keys() { ast_vector_tpl<T1> r = ast_vector_tpl<T1>(ctx(), Z3_ast_map_keys(ctx(), m_map)); check_error(); return r; }
         friend std::ostream & operator<<(std::ostream & out, ast_map_tpl const & map_) { out << Z3_ast_map_to_string(map_.ctx(), map_); return out; }
     };
 
