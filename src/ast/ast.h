@@ -684,6 +684,12 @@ public:
     bool get_is_b_pure(){
         return m_is_b_pure;
     }
+    bool is_a_strict(){
+      return m_is_a_pure && !m_is_common;
+    }
+    bool is_b_strict(){
+      return m_is_b_pure && !m_is_common;
+    }
 };
 
 // -----------------------------------

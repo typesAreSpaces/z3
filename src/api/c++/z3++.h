@@ -800,6 +800,16 @@ namespace z3 {
            \brief Return true if this is a Common expression.
         */
         bool is_b_pure() const { bool r = Z3_is_b_pure(ctx(), m_ast); check_error(); return r; }
+        /**
+        /**
+           \brief Return true if this is a Common expression.
+        */
+        bool is_a_strict() const { bool r = Z3_is_a_strict(ctx(), m_ast); check_error(); return r; 
+        }
+        /**
+           \brief Return true if this is a Common expression.
+        */
+        bool is_b_strict() const { bool r = Z3_is_b_strict(ctx(), m_ast); check_error(); return r; }
 
         /**
            \brief Return string representation of numeral or algebraic number
